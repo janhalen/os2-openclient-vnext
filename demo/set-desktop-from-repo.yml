@@ -12,5 +12,5 @@
       shell: |
         xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/workspace0/last-image -s /home/logo.png
       become: yes
-      become_user: semaphore
+      become_user: root
 ...
