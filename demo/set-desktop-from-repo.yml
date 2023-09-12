@@ -4,13 +4,13 @@
   tasks:
     - name: Download image from GitHub
       get_url:
-        url: https://raw.githubusercontent.com/your_username/your_repo/master/path/to/your/image.png
-        dest: /path/to/save/image.png
+        url: https://raw.githubusercontent.com/janhalen/os2-openclient-vnext/ansible-prototype/demo/logo.png
+        dest: /home/logo.png
         mode: '0444'
 
     - name: Change desktop background
       shell: |
-        xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/workspace0/last-image -s /path/to/save/image.png
+        xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/workspace0/last-image -s /home/logo.png
       become: yes
-      become_user: your_username
+      become_user: default
 ...
