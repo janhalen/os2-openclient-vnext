@@ -9,7 +9,7 @@ services:
     volumes:
       - semaphore-mysql:/var/lib/mysql
     environment:
-#      - MYSQL_RANDOM_ROOT_PASSWORD=yes
+      - MYSQL_RANDOM_ROOT_PASSWORD=yes
       - MYSQL_DATABASE=semaphore
       - MYSQL_USER=semaphore
       - MYSQL_PASSWORD=R3K9Gs!#*DWePY#jMZ7R^qmKg46zhT3#eA2  # change!
@@ -41,3 +41,10 @@ services:
     restart: unless-stopped
     depends_on:
       - mysql
+  client:
+    image: consol/ubuntu-xfce-vnc
+    ports:
+      - "5901:5901"
+      - "6901:6901"
+    environment:
+      - VNC_PW=vncpassword
