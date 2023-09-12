@@ -42,11 +42,10 @@ services:
     depends_on:
       - mysql
   client:
-    image: dorowu/ubuntu-desktop-lxde-vnc
-    volumes:
-      - /dev/shm:/dev/shm
+    image: rsolano/ubuntu-vnc
     ports:
-      - "6080:80"
+      - "5901:5901"
       - "22:22"
+
     environment:
       - VNC_PASSWORD=your_password
