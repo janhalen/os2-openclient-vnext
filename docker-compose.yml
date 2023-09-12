@@ -42,13 +42,9 @@ services:
     depends_on:
       - mysql
   client:
-    image: gezp/ubuntu-desktop
-    ports:
-      - 6080:6080
-      - 22:22
-    volumes:
-      - ./data:/root/Desktop
+    build: ./demo/client/
     environment:
-      - RESOLUTION=1920x1080
-      - USER=root
-      - PASSWORD=yourpassword
+      - SSH_PASSWORD=ansiblesemaphore
+    ports:
+      - "8080:80" # noVNC
+      - "22:22"   # SSH
