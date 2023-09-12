@@ -12,15 +12,10 @@ RUN mkdir /var/run/sshd
 RUN echo 'root:ansiblesemaphore' | chpasswd
 
 # Enable SSH login for root
-RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 
-# Expose SSH port and noVNC port
+# Expose SSH port
 EXPOSE 22 80
 
-# Create a new script that will start sshd and then run whatever command was passed to the container
-RUN echo '#!/bin/bash\n\
-service ssh start\n\
-exec "$@"' > /entrypoint.sh && chmod +x /entrypoint.sh
-
-ENTRYPOINT ["/entrypoint.sh"]
+# Run SSHD
 CMD ["/usr/sbin/sshd", "-D"]
