@@ -1,8 +1,11 @@
 # Use an existing docker image for Ubuntu with a desktop environment and noVNC
 FROM dorowu/ubuntu-desktop-lxde-vnc
 
-# Install SSH server
-RUN apt-get update && apt-get install -y openssh-server
+# Add missing GPG key and install SSH server
+RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
+    apt-get update && \
+    apt-get install -y openssh-server
+    
 RUN mkdir /var/run/sshd
 
 # Set root password for SSH
