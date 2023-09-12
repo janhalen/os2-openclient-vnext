@@ -42,10 +42,13 @@ services:
     depends_on:
       - mysql
   client:
-    image: rsolano/ubuntu-vnc
+    image: gezp/ubuntu-desktop
     ports:
-      - "5901:5901"
-      - "22:22"
-
+      - 6080:6080
+      - 22:22
+    volumes:
+      - ./data:/root/Desktop
     environment:
-      - VNC_PASSWORD=your_password
+      - RESOLUTION=1920x1080
+      - USER=root
+      - PASSWORD=yourpassword
