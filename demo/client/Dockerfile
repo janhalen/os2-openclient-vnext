@@ -19,7 +19,7 @@ EXPOSE 22 80
 
 # Create a new script that will start sshd and then run whatever command was passed to the container
 RUN echo '#!/bin/bash\n\
-/usr/sbin/sshd\n\
+service ssh start\n\
 exec "$@"' > /entrypoint.sh && chmod +x /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
