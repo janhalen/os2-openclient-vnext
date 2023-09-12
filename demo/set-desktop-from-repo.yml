@@ -1,0 +1,16 @@
+---
+- hosts: target
+  gather_facts: no
+  tasks:
+    - name: Download image from GitHub
+      get_url:
+        url: https://raw.githubusercontent.com/your_username/your_repo/master/path/to/your/image.png
+        dest: /path/to/save/image.png
+        mode: '0444'
+
+    - name: Change desktop background
+      shell: |
+        xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/workspace0/last-image -s /path/to/save/image.png
+      become: yes
+      become_user: your_username
+...
