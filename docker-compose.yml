@@ -9,7 +9,7 @@ services:
     volumes:
       - semaphore-mysql:/var/lib/mysql
     environment:
-      - MYSQL_RANDOM_ROOT_PASSWORD=yes
+#      - MYSQL_RANDOM_ROOT_PASSWORD=yes
       - MYSQL_DATABASE=semaphore
       - MYSQL_USER=semaphore
       - MYSQL_PASSWORD=R3K9Gs!#*DWePY#jMZ7R^qmKg46zhT3#eA2  # change!
