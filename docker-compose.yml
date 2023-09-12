@@ -1,0 +1,27 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: semaphore
+      MYSQL_DATABASE: semaphore
+      MYSQL_USER: semaphore
+      MYSQL_PASSWORD: semaphore
+    volumes:
+      - db_data:/var/lib/mysql
+
+  web:
+    image: ansiblesemaphore/semaphore:latest
+    depends_on:
+      - db
+    ports:
+      - "3000:3000"
+    environment:
+      SEMAPHORE_DB_HOST: db
+      SEMAPHORE_DB_PORT: 3306
+      SEMAPHORE_DB_USER: semaphore
+      SEMAPHORE_DB_PASS: semaphore
+      SEMAPHORE_DB_NAME: semaphore
+
+volumes:
+  db_data:
