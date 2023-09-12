@@ -14,8 +14,15 @@ RUN echo 'root:ansiblesemaphore' | chpasswd
 # Enable SSH login for root
 RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 
+# Create a supervisor conf for sshd
+RUN echo '[program:sshd]\n\
+command=/usr/sbin/sshd -D\n\
+autostart=true\n\
+autorestart=true\n\
+redirect_stderr=true' > /etc/supervisor/conf.d/sshd.conf
+
 # Expose SSH port
 EXPOSE 22 80
 
-# Run SSHD
-CMD ["/usr/sbin/sshd", "-D"]
+# Run supervisor
+CMD ["/usr/bin/supervisord"]
