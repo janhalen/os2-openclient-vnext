@@ -1,5 +1,5 @@
 ---
-- hosts: target
+- hosts: clients
   gather_facts: no
   tasks:
     - name: Download image from GitHub
