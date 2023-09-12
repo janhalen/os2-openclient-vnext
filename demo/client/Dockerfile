@@ -5,11 +5,11 @@ FROM dorowu/ubuntu-desktop-lxde-vnc
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
     apt-get update && \
     apt-get install -y openssh-server
-    
+
 RUN mkdir /var/run/sshd
 
 # Set root password for SSH
-RUN echo "root:$SSH_PASSWORD" | chpasswd
+RUN echo 'root:ansiblesemaphore' | chpasswd
 
 # Enable SSH login for root
 RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
