@@ -17,5 +17,10 @@ RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/s
 # Expose SSH port and noVNC port
 EXPOSE 22 80
 
-# Start SSH server
+# Create a new script that will start sshd and then run whatever command was passed to the container
+RUN echo '#!/bin/bash\n\
+/usr/sbin/sshd\n\
+exec "$@"' > /entrypoint.sh && chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
 CMD ["/usr/sbin/sshd", "-D"]
