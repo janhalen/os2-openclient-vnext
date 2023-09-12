@@ -43,8 +43,6 @@ services:
       - mysql
   client:
     build: ./demo/client/
-    environment:
-      - SSH_PASSWORD=ansiblesemaphore
     ports:
       - "8080:80" # noVNC
       - "22:22"   # SSH
