@@ -4,8 +4,7 @@
   tasks:
     - name: Download image from GitHub
       get_url:
-        url: https://raw.githubusercontent.com/janhalen/os2-openclient-vnext/ansible-prototype/demo/logo.png
-        dest: /home/logo.png
+        url: https://raw.githubusercontent.com/janhalen/os2-openclient-vnext/ansible-prototype/demo/playbooks/set_wallpaper/logo.png
         mode: '0444'
 
     - name: Change desktop background
