@@ -6,6 +6,7 @@
       get_url:
         url: https://raw.githubusercontent.com/janhalen/os2-openclient-vnext/ansible-prototype/demo/playbooks/set_wallpaper/logo.png
         mode: '0444'
+        dest: /home/logo.png
 
     - name: Change desktop background
       shell: |
