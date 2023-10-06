@@ -28,7 +28,7 @@ services:
     depends_on:
       - loki
 
-    simulated_client:
+  simulated_client:
     image: grafana/promtail:2.9.1
     volumes:
       - ./promtail/promtail-config.yaml:/etc/promtail/docker-config.yaml
