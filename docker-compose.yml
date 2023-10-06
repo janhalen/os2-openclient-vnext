@@ -27,7 +27,7 @@ services:
     simulated_client:
     image: grafana/promtail:2.9.1
     volumes:
-      - ./promtail-config.yaml:/etc/promtail/docker-config.yaml
+      - ./promtail/promtail-config.yaml:/etc/promtail/docker-config.yaml
       - /var/log:/var/log
     command: -config.file=/etc/promtail/docker-config.yaml
     depends_on:
