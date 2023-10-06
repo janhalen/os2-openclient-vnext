@@ -1,5 +1,14 @@
 version: '3.8'
 services:
+
+  loki:
+    image: grafana/loki:2.9.1
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+    volumes:
+      - ./loki-config.yaml:/etc/loki/local-config.yaml
+
   grafana:
     image: grafana/grafana-oss
     container_name: grafana
@@ -12,5 +21,17 @@ services:
       - '3000:3000'
     volumes:
       - 'grafana_storage:/var/lib/grafana'
+    depends_on:
+      - loki
+
+    simulated_client:
+    image: grafana/promtail:2.9.1
+    volumes:
+      - ./promtail-config.yaml:/etc/promtail/docker-config.yaml
+      - /var/log:/var/log
+    command: -config.file=/etc/promtail/docker-config.yaml
+    depends_on:
+      - loki
+
 volumes:
   grafana_storage: {}
