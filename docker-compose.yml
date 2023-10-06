@@ -17,9 +17,9 @@ services:
       # increases the log level from info to debug
       #- GF_LOG_LEVEL=debug
       #- GF_INSTALL_PLUGINS=grafana-clock-panel 1.0.1
-    GF_DATASOURCES_DEFAULT_URL: http://loki:3100
-    GF_DATASOURCES_DEFAULT_ACCESS: proxy
-    GF_DATASOURCES_DEFAULT_BASICAUTH: false
+    - GF_DATASOURCES_DEFAULT_URL=http://loki:3100
+    - GF_DATASOURCES_DEFAULT_ACCESS=proxy
+    - GF_DATASOURCES_DEFAULT_BASICAUTH=false
     
     ports:
       - '3000:3000'
